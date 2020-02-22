@@ -8,14 +8,17 @@ public abstract class Account {
     private AccountData accountData;
 
     public Account(AccountData accountData) {
+
         this.accountData = accountData;
     }
 
     public AccountData getAccountData() {
+
         return accountData;
     }
 
     public void deposit(int amount) {
+
         updateBalance(getBalance() + amount);
     }
 
@@ -29,10 +32,12 @@ public abstract class Account {
     }
 
     protected boolean canWithdraw(int amount) {
+
         return getBalance() >= amount;
     }
 
     public int getBalance() {
+
         return accountData.getBalance();
     }
 
