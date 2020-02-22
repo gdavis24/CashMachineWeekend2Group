@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import rocks.zipcode.atm.bank.Alert;
 import rocks.zipcode.atm.bank.Bank;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -38,11 +39,18 @@ public class CashMachineApp extends Application {
         Button btnSubmit = new Button("Login");
         btnSubmit.setOnAction(e -> {
             int id = Integer.parseInt(field1.getText());
-            cashMachine.login(id);
+            if (id ==1 || id ==2) {
+                cashMachine.login(id);
 
-            areaInfo.setText(cashMachine.toString());
-            primaryStage.setScene(scene2);
+                areaInfo.setText(cashMachine.toString());
+                primaryStage.setScene(scene2);
+            }
+            else
+            {
+                Alert.display("Alert Box", "Please enter a valid account number");}
         });
+
+
 
         VBox layout1 = new VBox(10);
         layout1.getChildren().addAll(label1,field1 , btnSubmit, areaInfo);
