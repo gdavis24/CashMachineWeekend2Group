@@ -34,9 +34,14 @@ public class DemoMain extends Application {
         Button button2 = new Button("Go back to scene 1");
         button2.setOnAction(e -> window.setScene(scene1));
 
+        //Button 3
+        Button button3 = new Button("Alert Box");
+        button3.setOnAction(e -> AlertBox.display("Alert Box", "Go Back"));
+
         //Layout2
         StackPane layout2 = new StackPane();
-        layout2.getChildren().add(button2);
+       // layout2.getChildren().add(button2);
+        layout2.getChildren().add(button3);
         scene2 = new Scene(layout2, 600,300);
 
         window.setScene(scene1);
