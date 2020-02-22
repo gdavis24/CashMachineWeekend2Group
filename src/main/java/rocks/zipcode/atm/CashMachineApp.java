@@ -70,6 +70,7 @@ public class CashMachineApp extends Application {
     public void start(Stage stage) throws Exception {
         stage.setScene(new Scene(createContent()));
         stage.show();
+        stage.setTitle("Cash Machine");
     }
 
     public static void main(String[] args) {
