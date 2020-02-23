@@ -44,6 +44,7 @@ public class CashMachine {
                     () -> bank.withdraw(accountData, amount),
                     update
             );
+
         }
     }
 

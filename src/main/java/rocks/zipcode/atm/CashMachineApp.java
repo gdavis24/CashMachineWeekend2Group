@@ -2,6 +2,8 @@ package rocks.zipcode.atm;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import rocks.zipcode.atm.bank.AccountData;
@@ -59,61 +61,90 @@ public class CashMachineApp extends Application {
 
 
 //Scene 2
+
+
+        Button btnToMenu = new Button("Back To Menu");
+        btnToMenu.setOnAction(e -> {
+            primaryStage.setScene(scene2);
+        });
+
+
         Label label2= new Label("Deposit");
         TextArea deposit = new TextArea();
         Button btnDeposit = new Button("Deposit");
         btnDeposit.setOnAction(e -> {
-                    primaryStage.setScene(scene3);
+            primaryStage.setScene(scene3);
 
-                    VBox layout2 = new VBox(10);
-                    layout2.getChildren().addAll(label2, field2, btnDeposit, areaInfo);
-                    scene3 = new Scene(layout2, 400, 400);
+            VBox layout2 = new VBox(10);
+            layout2.getChildren().addAll(label2, field2, areaInfo, btnDeposit, btnToMenu);
+            scene3 = new Scene(layout2, 400, 400);
 
             primaryStage.setScene(scene3);
             primaryStage.show();
 
-        int amount = Integer.parseInt(field2.getText());
+            int amount = Integer.parseInt(field2.getText());
             cashMachine.deposit(amount);
             areaInfo.setText(cashMachine.toString());
             deposit.setText("Deposit Successful");
 
         });
 
+
+
         Label label3= new Label("Withdraw");
         TextArea withdraw = new TextArea();
         Button btnWithdraw = new Button("Withdraw");
-           btnWithdraw.setOnAction(e -> { primaryStage.setScene(scene4);
+        btnWithdraw.setOnAction(e -> { primaryStage.setScene(scene4);
 
-               VBox layout3 = new VBox(10);
-               layout3.getChildren().addAll(label3, field3, btnWithdraw, areaInfo);
-               scene4 = new Scene(layout3, 400, 400);
+            VBox layout3 = new VBox(10);
+            layout3.getChildren().addAll(label3, field3, btnWithdraw, areaInfo);
+            scene4 = new Scene(layout3, 400, 400);
 
-               primaryStage.setScene(scene4);
-               primaryStage.show();
+            primaryStage.setScene(scene4);
+            primaryStage.show();
 
-                   int amount = Integer.parseInt(field3.getText());
-                    cashMachine.withdraw(amount);
+            int amount = Integer.parseInt(field3.getText());
+            cashMachine.withdraw(amount);
 
-                    areaInfo.setText(cashMachine.toString());
+            areaInfo.setText(cashMachine.toString());
 //                    if (cashMachine.withdraw(amount) <= 0) {
 //                        withdrawDeposit.setText("Insufficient Funds :(");
 //                    } else {
-                        withdraw.setText("Withdraw Successful");
+            withdraw.setText("Withdraw Successful");
 
-                });
-/*
-        Button btnExit = new Button("Exit");
-        btnExit.setOnAction(e -> {
+        });
+
+        Button btnLogout = new Button("Logout");
+        btnLogout.setOnAction(e -> {
             cashMachine.exit();
             primaryStage.setScene(scene1);
             areaInfo.setText(cashMachine.toString());
         });
 
-*/
-        VBox layout2= new VBox(20);
-        layout2.getChildren().addAll(label2, btnDeposit,btnWithdraw,/*btnExit,field2*/areaInfo /*withdrawDeposit*/);
-        scene2= new Scene(layout2,400,400);
 
+
+        VBox layout2= new VBox(0);
+
+
+        FlowPane flowPane = new FlowPane();
+        flowPane.setPadding(new Insets(200, 200, 200, 200));
+        flowPane.setMargin(btnDeposit, new Insets(100, 100, 100, 100));
+        flowPane.setAlignment(Pos.BOTTOM_CENTER);
+//        depFlow.setHgap(10);
+        flowPane.getChildren().add(btnDeposit);
+        btnDeposit.setPrefWidth(400);
+        btnDeposit.setPrefHeight(200);
+        btnWithdraw.setPrefWidth(400);
+        btnWithdraw.setPrefHeight(200);
+        btnLogout.setPrefWidth(400);
+        btnLogout.setPrefHeight(200);
+        layout2.getChildren().addAll(label2, /*btnLogout,field2*/areaInfo /*withdrawDeposit*/, btnDeposit,btnWithdraw, btnLogout);
+        scene2= new Scene(layout2,400,500);
+
+
+
+        btnWithdraw.setLayoutX(200);
+        btnWithdraw.setLayoutY(200);
 
         primaryStage.setScene(scene1);
         primaryStage.show();
