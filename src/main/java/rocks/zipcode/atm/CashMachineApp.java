@@ -28,7 +28,7 @@ public class CashMachineApp extends Application {
     private TextField field3 = new TextField();
     private TextField field4 = new TextField();
     private CashMachine cashMachine = new CashMachine(new Bank());
-    Scene scene1, scene2, scene3, scene4;
+    Scene scene1, scene2, scene3, scene4, scene15;
 
     @Override
     public void start(Stage primaryStage) {
@@ -65,7 +65,7 @@ public class CashMachineApp extends Application {
 
         Button btnToMenu = new Button("Back To Menu");
         btnToMenu.setOnAction(e -> {
-            primaryStage.setScene(scene2);
+            primaryStage.setScene(scene3);
         });
 
 

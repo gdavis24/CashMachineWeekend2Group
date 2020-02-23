@@ -13,7 +13,7 @@ public final class AccountData {
     private int routingNumber;
     private int accountNumber;
 
-    AccountData(int id, String name, String email, int balance) {
+   public AccountData(int id, String name, String email, int balance) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -40,7 +40,7 @@ public final class AccountData {
 
    // public double getAverageMonthlyBalance() { return AverageMonthlyBalance;}
 
-    public boolean waiver() { return this.waiver();}
+    //public boolean waiver() { return this.waiver();}
 
 
 
