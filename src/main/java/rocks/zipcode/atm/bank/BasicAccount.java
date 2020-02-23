@@ -10,12 +10,11 @@ public class BasicAccount extends Account {
     public BasicAccount(AccountData accountData) {
 
         super(accountData);
-
-
     }
 
     @Override
     protected boolean canWithdraw(int amount) {
+
 
         return getBalance() + OVERDRAFT_LIMIT >= amount;
     }
