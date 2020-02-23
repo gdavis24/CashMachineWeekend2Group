@@ -24,7 +24,11 @@ public class CashMachine {
         accountData = data;
     };
 
+<<<<<<< HEAD
     //---------
+=======
+//---------
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     public void addAccount(int id, String name, String email, int balance, String accountType){
         tryCall(
                 () -> bank.createAccount(id,name,email,balance, accountType), update
