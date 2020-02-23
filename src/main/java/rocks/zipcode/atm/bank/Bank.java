@@ -4,6 +4,7 @@ import rocks.zipcode.atm.ActionResult;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author ZipCodeWilmington
@@ -21,6 +22,28 @@ public class Bank {
                 2, "Premium", "example2@gmail.com", 200)));
 
     }
+//-----------
+    public ActionResult<AccountData> createAccount(int id, String name, String email, int balance, String accountType) {
+        Boolean check = checkIds(id);
+        if (check) {
+            if (accountType.equals("Basic")) {
+                accounts.put(id, new BasicAccount(new AccountData(
+                        id, name, email, 0
+                )));
+            }
+            if (accountType.equals("Premium")) {
+                accounts.put(id, new PremiumAccount(new AccountData(
+                        id, name, email, 0
+                )));
+            }
+            Account newAccount = accounts.get(id);
+            return ActionResult.success(newAccount.getAccountData());
+        }
+
+        return ActionResult.fail("taken");
+    }
+
+
 
     public ActionResult<AccountData> getAccountById(int id) {
         Account account = accounts.get(id);
@@ -48,5 +71,14 @@ public class Bank {
         } else {
             return ActionResult.fail("Withdraw failed: " + amount + ". Account has: " + account.getBalance());
         }
+    }
+    //----------------
+    public Boolean checkIds(Integer acctId) {
+        for(Integer i : accounts.keySet()){
+            if(i.equals(acctId)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

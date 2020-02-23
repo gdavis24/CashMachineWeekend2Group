@@ -2,6 +2,8 @@ package rocks.zipcode.atm;
 
 import rocks.zipcode.atm.bank.AccountData;
 import rocks.zipcode.atm.bank.Bank;
+import rocks.zipcode.atm.bank.BasicAccount;
+import rocks.zipcode.atm.bank.PremiumAccount;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -21,6 +23,15 @@ public class CashMachine {
     private Consumer<AccountData> update = data -> {
         accountData = data;
     };
+
+//---------
+    public void addAccount(int id, String name, String email, int balance, String accountType){
+        tryCall(
+                () -> bank.createAccount(id,name,email,balance, accountType), update
+        );
+    }
+
+
 
     public void login(int id) {
         tryCall(
