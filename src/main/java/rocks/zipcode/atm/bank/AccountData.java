@@ -15,7 +15,7 @@ public final class AccountData {
 
 
 
-    AccountData(int id, String name, String email, int balance) {
+    public AccountData(int id, String name, String email, int balance) {
         this.id = id;
         this.name = name;
         this.email = email;
