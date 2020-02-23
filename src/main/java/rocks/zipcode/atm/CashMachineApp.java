@@ -1,154 +1,227 @@
 package rocks.zipcode.atm;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import rocks.zipcode.atm.bank.AccountData;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import rocks.zipcode.atm.bank.Alert;
 import rocks.zipcode.atm.bank.Bank;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.FlowPane;
+
 
 /**
  * @author ZipCodeWilmington
  */
 public class CashMachineApp extends Application {
-    private TextField field1 = new TextField();
-    private TextField field2 = new TextField();
-    private TextField field3 = new TextField();
-    private TextField field4 = new TextField();
+    private TextField fieldEnterID = new TextField();
+    private TextField fieldName = new TextField();
+    private TextField fieldOtherAmount = new TextField();
+    private TextField fieldID = new TextField();
+    private TextField fieldEmail = new TextField();
     private CashMachine cashMachine = new CashMachine(new Bank());
-    Scene scene1, scene2, scene3, scene4;
+    private Stage stage;
+    //Scene loginScreen, loggedInHomeScreen, depositScreen, withdrawScreen, createAccountScreen;
+    TextArea areaInfo = new TextArea();
+
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
+        this.stage = stage;
+        stage.setScene(new Scene(loginScreen()));
+        stage.show();
+    }
+    //loginScreen
+    private Parent loginScreen() {
+        //fieldEnterID.setText("99");
+        stage.setTitle("REGS ATM");
+        Label labelLoginScreen = new Label("Welcome!\n Please enter your account number.");
 
-        primaryStage.setTitle("REGS ATM");
-
-//Scene 1
-        Label label1= new Label("Welcome!\n\n Please enter your account number.");
-//        Button button1= new Button("Go to scene 2");
-//        button1.setOnAction(e -> primaryStage.setScene(scene2));
-
-        TextArea areaInfo = new TextArea();
         Button btnSubmit = new Button("Login");
         btnSubmit.setOnAction(e -> {
-            int id = Integer.parseInt(field1.getText());
-            if (id ==1 || id ==2) {
+            int id = Integer.parseInt(fieldEnterID.getText());
+            if (id == 1 || id == 2) {
                 cashMachine.login(id);
 
                 areaInfo.setText(cashMachine.toString());
-                primaryStage.setScene(scene2);
+                stage.setScene(new Scene(loggedInHomeScreen()));
+            } else {
+                Alert.display("Alert Box", "Please enter a valid account number");
             }
-            else
-            {
-                Alert.display("Alert Box", "Please enter a valid account number");}
         });
-
-        VBox layout1 = new VBox(10);
-        layout1.getChildren().addAll(label1,field1 , btnSubmit, areaInfo);
-        scene1= new Scene(layout1, 400, 400);
-
-
-//Scene 2
-
-
-        Button btnToMenu = new Button("Back To Menu");
-        btnToMenu.setOnAction(e -> {
-            primaryStage.setScene(scene2);
+        Button btnCreateAccount = new Button("Create Account");
+        btnCreateAccount.setOnAction(e -> {
+            stage.setScene(new Scene(createAccountScreen()));
         });
-
-
-        Label label2= new Label("Deposit");
-        TextArea deposit = new TextArea();
-        Button btnDeposit = new Button("Deposit");
-        btnDeposit.setOnAction(e -> {
-            primaryStage.setScene(scene3);
-
-            VBox layout2 = new VBox(10);
-            layout2.getChildren().addAll(label2, field2, areaInfo, btnDeposit, btnToMenu);
-            scene3 = new Scene(layout2, 400, 400);
-
-            primaryStage.setScene(scene3);
-            primaryStage.show();
-
-            int amount = Integer.parseInt(field2.getText());
-            cashMachine.deposit(amount);
-            areaInfo.setText(cashMachine.toString());
-            deposit.setText("Deposit Successful");
-
-        });
-
-
-
-        Label label3= new Label("Withdraw");
-        TextArea withdraw = new TextArea();
-        Button btnWithdraw = new Button("Withdraw");
-        btnWithdraw.setOnAction(e -> { primaryStage.setScene(scene4);
-
-            VBox layout3 = new VBox(10);
-            layout3.getChildren().addAll(label3, field3, btnWithdraw, areaInfo);
-            scene4 = new Scene(layout3, 400, 400);
-
-            primaryStage.setScene(scene4);
-            primaryStage.show();
-
-            int amount = Integer.parseInt(field3.getText());
-            cashMachine.withdraw(amount);
-
-            areaInfo.setText(cashMachine.toString());
-//                    if (cashMachine.withdraw(amount) <= 0) {
-//                        withdrawDeposit.setText("Insufficient Funds :(");
-//                    } else {
-            withdraw.setText("Withdraw Successful");
-
-        });
-
-        Button btnLogout = new Button("Logout");
-        btnLogout.setOnAction(e -> {
-            cashMachine.exit();
-            primaryStage.setScene(scene1);
-            areaInfo.setText(cashMachine.toString());
-        });
-
-
-
-        VBox layout2= new VBox(0);
-
-
-        FlowPane flowPane = new FlowPane();
-        flowPane.setPadding(new Insets(200, 200, 200, 200));
-        flowPane.setMargin(btnDeposit, new Insets(100, 100, 100, 100));
-        flowPane.setAlignment(Pos.BOTTOM_CENTER);
-//        depFlow.setHgap(10);
-        flowPane.getChildren().add(btnDeposit);
-        btnDeposit.setPrefWidth(400);
-        btnDeposit.setPrefHeight(200);
-        btnWithdraw.setPrefWidth(400);
-        btnWithdraw.setPrefHeight(200);
-        btnLogout.setPrefWidth(400);
-        btnLogout.setPrefHeight(200);
-        layout2.getChildren().addAll(label2, /*btnLogout,field2*/areaInfo /*withdrawDeposit*/, btnDeposit,btnWithdraw, btnLogout);
-        scene2= new Scene(layout2,400,500);
-
-
-
-        btnWithdraw.setLayoutX(200);
-        btnWithdraw.setLayoutY(200);
-
-        primaryStage.setScene(scene1);
-        primaryStage.show();
+        VBox layoutLoginScreen = new VBox(10);
+        layoutLoginScreen.getChildren().addAll(labelLoginScreen, fieldEnterID, btnSubmit, btnCreateAccount);
+        //loginScreen = new Scene(layout1, 300, 300);
+        return layoutLoginScreen;
     }
+    //createAccountScreen
+    private Parent createAccountScreen() {
+        Label labelCreateAccount = new Label("Please fill out all fields");
+
+        Label labelId = new Label("ID");
+        Label labelName = new Label("Name");
+        String name = fieldName.getText();
+        Label labelEmail = new Label("Email");
+        String email = fieldEmail.getText();
+
+        ObservableList<String> options = FXCollections.observableArrayList("Basic", "Premium");
+        final ComboBox<String> combobox = new ComboBox<>(options);
+
+        String accountType = combobox.getValue() + "";
+        Button btnSubmitInfo = new Button("Submit");
+        btnSubmitInfo.setOnAction(e -> {
+
+            if (!name.equals("")) {
+                Alert.display("Alert Box", "Invalid input. Please enter a number.");
+            } else if (email.contains("@")) {
+                Alert.display("Alert Box", "Invalid input. Please enter a valid email address.");
+            } else {
+                cashMachine.addAccount(Integer.parseInt(fieldEnterID.getText()), name, email, 0, accountType);
+
+                cashMachine.login(Integer.parseInt(fieldEnterID.getText()));
+                areaInfo.setText(cashMachine.toString());
+                stage.setScene(new Scene(loggedInHomeScreen()) );
+            }
+        });
+
+        VBox layoutCreateAccount = new VBox(10);
+        layoutCreateAccount.getChildren().addAll(labelCreateAccount,labelId, fieldID,labelName, fieldName,labelEmail, fieldEmail, btnSubmitInfo, combobox);
+        //createAccountScreen = new Scene(layoutCreateAccount, 300, 300);
+        return layoutCreateAccount;
+    }
+
+    //loggedInHomeScreen
+    private Parent loggedInHomeScreen() {
+        Label label2 = new Label("Please select an option.");
+        areaInfo.setText(cashMachine.toString());
+        Button btnGoToDeposit = new Button("Deposit");
+        btnGoToDeposit.setOnAction(e -> {
+            areaInfo.setText(cashMachine.toString());
+            stage.setScene(new Scene(depositScreen()));
+        });
+
+        Button btnGoToWithdraw = new Button("Withdraw");
+
+        btnGoToWithdraw.setOnAction(e -> {
+            areaInfo.setText(cashMachine.toString());
+            stage.setScene(new Scene(withdrawScreen()));
+        });
+
+        Button btnExit = new Button("Exit");
+        btnExit.setOnAction(e -> {
+            cashMachine.exit();
+            stage.setScene(new Scene(loginScreen()) );
+            areaInfo.setText(cashMachine.toString());
+        });
+
+        VBox layout2 = new VBox(20);
+
+        layout2.getChildren().addAll(label2, btnGoToDeposit, btnGoToWithdraw, btnExit, areaInfo);
+        //loggedInHomeScreen = new Scene(layout2, 600, 600);
+        return layout2;
+    }
+    //depositScreen
+    private Parent depositScreen() {
+        Label labelDepositScreen = new Label("Please select an amount to deposit.");
+
+        Button btnDeposit10 = new Button("$10");
+        btnDeposit10.setOnAction(e -> {
+            cashMachine.deposit(10);
+            areaInfo.setText(cashMachine.toString());
+
+            stage.setScene(new Scene(depositScreen()) );
+        });
+
+        Button btnDeposit50 = new Button("$50");
+        btnDeposit50.setOnAction(e -> {
+            cashMachine.deposit(50);
+            areaInfo.setText(cashMachine.toString());
+
+            stage.setScene(new Scene(depositScreen()));
+        });
+
+        Button btnDeposit100 = new Button("$100");
+        btnDeposit100.setOnAction(e -> {
+            cashMachine.deposit(100);
+            areaInfo.setText(cashMachine.toString());
+
+            stage.setScene(new Scene(depositScreen()));
+        });
+
+        Button btnDepositOtherAmount = new Button("Other amount");
+        btnDepositOtherAmount.setOnAction(e -> {
+
+            cashMachine.deposit(Integer.parseInt(fieldOtherAmount.getText()));
+            areaInfo.setText(cashMachine.toString());
+
+            stage.setScene(new Scene(depositScreen()));
+        });
+
+
+        Button btnBackToLoggedIn = new Button("Back to main");
+        btnBackToLoggedIn.setOnAction(e -> {
+            stage.setScene(new Scene(loggedInHomeScreen()));
+            areaInfo.setText(cashMachine.toString());
+        });
+
+
+        VBox layout3 = new VBox(20);
+        layout3.getChildren().addAll(labelDepositScreen, btnDeposit10, btnDeposit50, btnDeposit100, btnDepositOtherAmount, fieldOtherAmount, btnBackToLoggedIn, areaInfo);
+        //depositScreen = new Scene(layout3, 600, 600);
+        return layout3;
+    }
+    //withdrawScreen
+    private Parent withdrawScreen() {
+        Label labelWithdrawScreen = new Label("Please select an amount.");
+
+        Button btnWithdraw10 = new Button("$10");
+        btnWithdraw10.setOnAction(e -> {
+            cashMachine.withdraw(10);
+            areaInfo.setText(cashMachine.toString());
+            stage.setScene(new Scene(withdrawScreen()));
+        });
+
+        Button btnWithdraw50 = new Button("$50");
+        btnWithdraw50.setOnAction(e -> {
+            cashMachine.withdraw(50);
+            areaInfo.setText(cashMachine.toString());
+            stage.setScene(new Scene(withdrawScreen()));
+        });
+
+        Button btnWithdraw100 = new Button("$100");
+        btnWithdraw100.setOnAction(e -> {
+            cashMachine.withdraw(100);
+            areaInfo.setText(cashMachine.toString());
+            stage.setScene(new Scene(withdrawScreen()));
+        });
+
+        Button btnWithdrawOtherAmount = new Button("Other amount");
+        btnWithdrawOtherAmount.setOnAction(e -> {
+
+            cashMachine.withdraw(Integer.parseInt(fieldOtherAmount.getText()));
+
+            areaInfo.setText(cashMachine.toString());
+            stage.setScene(new Scene(withdrawScreen()));
+        });
+
+        Button btnBackToLoggedIn = new Button("Back to main");
+        btnBackToLoggedIn.setOnAction(e -> {
+            stage.setScene(new Scene(loggedInHomeScreen()));
+            areaInfo.setText(cashMachine.toString());
+        });
+        VBox layout4 = new VBox(20);
+        layout4.getChildren().addAll(labelWithdrawScreen, btnWithdraw10, btnWithdraw50, btnWithdraw100, btnWithdrawOtherAmount, btnBackToLoggedIn, fieldOtherAmount, areaInfo);
+        //withdrawScreen = new Scene(layout4, 600, 600);
+        return layout4;
+    }
+
+
 
     public static void main(String[] args) {
         launch(args);
