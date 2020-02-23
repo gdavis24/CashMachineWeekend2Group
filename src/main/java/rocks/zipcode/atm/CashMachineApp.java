@@ -33,7 +33,11 @@ public class CashMachineApp extends Application {
         stage.setScene(new Scene(loginScreen()));
         stage.show();
     }
+<<<<<<< HEAD
+    //loginScreen
+=======
 //loginScreen
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     private Parent loginScreen() {
         //fieldEnterID.setText("99");
         stage.setTitle("REGS ATM");
@@ -60,7 +64,11 @@ public class CashMachineApp extends Application {
         //loginScreen = new Scene(layout1, 300, 300);
         return layoutLoginScreen;
     }
+<<<<<<< HEAD
+    //createAccountScreen
+=======
 //createAccountScreen
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     private Parent createAccountScreen() {
         Label labelCreateAccount = new Label("Please fill out all fields");
 
@@ -77,14 +85,22 @@ public class CashMachineApp extends Application {
         Button btnSubmitInfo = new Button("Submit");
         btnSubmitInfo.setOnAction(e -> {
 
+<<<<<<< HEAD
+            if (!name.equals("")) {
+=======
              if (!name.equals("")) {
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
                 Alert.display("Alert Box", "Invalid input. Please enter a number.");
             } else if (email.contains("@")) {
                 Alert.display("Alert Box", "Invalid input. Please enter a valid email address.");
             } else {
                 cashMachine.addAccount(Integer.parseInt(fieldEnterID.getText()), name, email, 0, accountType);
 
+<<<<<<< HEAD
+                cashMachine.login(Integer.parseInt(fieldEnterID.getText()));
+=======
                  cashMachine.login(Integer.parseInt(fieldEnterID.getText()));
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
                 areaInfo.setText(cashMachine.toString());
                 stage.setScene(new Scene(loggedInHomeScreen()) );
             }
@@ -93,10 +109,17 @@ public class CashMachineApp extends Application {
         VBox layoutCreateAccount = new VBox(10);
         layoutCreateAccount.getChildren().addAll(labelCreateAccount,labelId, fieldID,labelName, fieldName,labelEmail, fieldEmail, btnSubmitInfo, combobox);
         //createAccountScreen = new Scene(layoutCreateAccount, 300, 300);
+<<<<<<< HEAD
+        return layoutCreateAccount;
+    }
+
+    //loggedInHomeScreen
+=======
 return layoutCreateAccount;
     }
 
 //loggedInHomeScreen
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     private Parent loggedInHomeScreen() {
         Label label2 = new Label("Please select an option.");
         areaInfo.setText(cashMachine.toString());
@@ -126,7 +149,11 @@ return layoutCreateAccount;
         //loggedInHomeScreen = new Scene(layout2, 600, 600);
         return layout2;
     }
+<<<<<<< HEAD
+    //depositScreen
+=======
 //depositScreen
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     private Parent depositScreen() {
         Label labelDepositScreen = new Label("Please select an amount to deposit.");
 
@@ -176,7 +203,11 @@ return layoutCreateAccount;
         //depositScreen = new Scene(layout3, 600, 600);
         return layout3;
     }
+<<<<<<< HEAD
+    //withdrawScreen
+=======
 //withdrawScreen
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     private Parent withdrawScreen() {
         Label labelWithdrawScreen = new Label("Please select an amount.");
 
@@ -218,7 +249,11 @@ return layoutCreateAccount;
         VBox layout4 = new VBox(20);
         layout4.getChildren().addAll(labelWithdrawScreen, btnWithdraw10, btnWithdraw50, btnWithdraw100, btnWithdrawOtherAmount, btnBackToLoggedIn, fieldOtherAmount, areaInfo);
         //withdrawScreen = new Scene(layout4, 600, 600);
+<<<<<<< HEAD
+        return layout4;
+=======
 return layout4;
+>>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
     }
 
 

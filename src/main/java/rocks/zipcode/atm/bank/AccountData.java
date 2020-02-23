@@ -44,7 +44,7 @@ public final class AccountData {
 
     //public int getSecurityPin() {return securityPin;}
 
-   // public double getAverageMonthlyBalance() { return AverageMonthlyBalance;}
+    // public double getAverageMonthlyBalance() { return AverageMonthlyBalance;}
 
     public boolean waiver() { return this.waiver();}
 
