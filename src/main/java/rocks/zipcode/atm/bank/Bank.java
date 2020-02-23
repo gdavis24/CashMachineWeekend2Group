@@ -18,8 +18,8 @@ public class Bank {
         )));
 
         accounts.put(2, new PremiumAccount(new AccountData(
-                2, "Premium", "example2@gmail.com", 200
-        )));
+                2, "Premium", "example2@gmail.com", 200)));
+
     }
 
     public ActionResult<AccountData> getAccountById(int id) {
