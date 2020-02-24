@@ -22,11 +22,7 @@ public class Bank {
                 2, "Premium", "example2@gmail.com", 200)));
 
     }
-<<<<<<< HEAD
-    //-----------
-=======
-//-----------
->>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
+
     public ActionResult<AccountData> createAccount(int id, String name, String email, int balance, String accountType) {
         Boolean check = checkIds(id);
         if (check) {
@@ -85,8 +81,6 @@ public class Bank {
         }
         return true;
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 145c15840d3b51c12e24bde966a05b7d1db4a936
+

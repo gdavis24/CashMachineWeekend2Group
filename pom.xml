@@ -1,23 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.almasb</groupId>
     <artifactId>CashMachine</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <source.version>1.8</source.version>
-
         <!-- plugins -->
         <maven.compiler.version>3.3</maven.compiler.version>
         <maven.shade.version>2.4.2</maven.shade.version>
-
         <!-- dependencies -->
     </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -28,7 +23,6 @@
                     <target>${source.version}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -52,5 +46,12 @@
             </plugin>
         </plugins>
     </build>
-
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
