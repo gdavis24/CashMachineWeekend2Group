@@ -50,6 +50,7 @@ public class CashMachineApp extends Application {
         stage.setTitle("REGS ATM");
         Label labelLoginScreen = new Label("Welcome!\n Please enter your account number.");
         Button btnSubmit = new Button("Login");
+        btnSubmit.setStyle("-fx-background-color: #34dbeb; ");
         btnSubmit.setFont(Font.font("Verdana", 30));
         btnSubmit.setPrefHeight(100);
         btnSubmit.setPrefWidth(400);
@@ -64,6 +65,7 @@ public class CashMachineApp extends Application {
             }
         });
         Button btnCreateAccount = new Button("Create Account");
+        btnCreateAccount.setStyle("-fx-background-color: #808d96; ");
         btnCreateAccount.setPrefHeight(100);
         btnCreateAccount.setPrefWidth(400);
         btnCreateAccount.setFont(Font.font("Verdana", 30));
@@ -82,16 +84,21 @@ public class CashMachineApp extends Application {
         Label labelCreateAccount = new Label("Please fill out all fields");
         labelCreateAccount.setPrefSize(100, 100);
         Label labelId = new Label("ID");
+        fieldID.setPromptText("ID");
         labelId.setPrefSize(100,100);
         Label labelName = new Label("Name");
         labelName.setPrefSize(100,100);
+        fieldName.setPromptText("Name");
         String name = fieldName.getText();
         Label labelEmail = new Label("Email");
+        fieldEmail.setPromptText("Email");
         String email = fieldEmail.getText();
         ObservableList<String> options = FXCollections.observableArrayList("Basic", "Premium");
         final ComboBox<String> combobox = new ComboBox<>(options);
+
         String accountType = combobox.getValue() + "";
         Button btnSubmitInfo = new Button("Submit");
+        btnSubmitInfo.setStyle("-fx-background-color: #34dbeb; ");
         btnSubmitInfo.setPrefHeight(100);
         btnSubmitInfo.setPrefWidth(400);
         btnSubmitInfo.setFont(Font.font("Verdana", 30));
@@ -121,6 +128,7 @@ public class CashMachineApp extends Application {
         //label2.setTextFill(Color.color(0,0,5));
         areaInfo.setText(cashMachine.toString());
         Button btnGoToDeposit = new Button("Deposit");
+        btnGoToDeposit.setStyle("-fx-background-color: #4a7fa8; ");
         btnGoToDeposit.setPrefHeight(100);
         btnGoToDeposit.setPrefWidth(400);
         btnGoToDeposit.setFont(Font.font("Verdana", 30));
@@ -129,6 +137,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(depositScreen()));
         });
         Button btnGoToWithdraw = new Button("Withdraw");
+        btnGoToWithdraw.setStyle("-fx-background-color: #4a7fa8; ");
         btnGoToWithdraw.setPrefHeight(100);
         btnGoToWithdraw.setPrefWidth(400);
         btnGoToWithdraw.setFont(Font.font("Verdana", 30));
@@ -156,6 +165,7 @@ public class CashMachineApp extends Application {
     private Parent depositScreen() {
         Label labelDepositScreen = new Label("Please select an amount to deposit.");
         Button btnDeposit10 = new Button("$10");
+        btnDeposit10.setStyle("-fx-background-color: #4a7fa8; ");
         btnDeposit10.setPrefHeight(90);
         btnDeposit10.setPrefWidth(400);
         btnDeposit10.setFont(Font.font("Verdana", 30));
@@ -165,6 +175,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(depositScreen()) );
         });
         Button btnDeposit50 = new Button("$50");
+        btnDeposit50.setStyle("-fx-background-color: #4a7fa8; ");
         btnDeposit50.setPrefHeight(90);
         btnDeposit50.setPrefWidth(400);
         btnDeposit50.setFont(Font.font("Verdana", 30));
@@ -174,6 +185,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(depositScreen()));
         });
         Button btnDeposit100 = new Button("$100");
+        btnDeposit100.setStyle("-fx-background-color: #4a7fa8; ");
         btnDeposit100.setPrefHeight(90);
         btnDeposit100.setPrefWidth(400);
         btnDeposit100.setFont(Font.font("Verdana", 30));
@@ -183,6 +195,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(depositScreen()));
         });
         Button btnDepositOtherAmount = new Button("Other amount");
+        btnDepositOtherAmount.setStyle("-fx-background-color: #4a7fa8; ");
         btnDepositOtherAmount.setPrefHeight(90);
         btnDepositOtherAmount.setPrefWidth(400);
         btnDepositOtherAmount.setFont(Font.font("Verdana", 30));
@@ -209,6 +222,7 @@ public class CashMachineApp extends Application {
     private Parent withdrawScreen() {
         Label labelWithdrawScreen = new Label("Please select an amount.");
         Button btnWithdraw10 = new Button("$10");
+        btnWithdraw10.setStyle("-fx-background-color: #b083c7; ");
         btnWithdraw10.setPrefHeight(90);
         btnWithdraw10.setPrefWidth(400);
         btnWithdraw10.setFont(Font.font("Verdana", 30));
@@ -218,6 +232,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(withdrawScreen()));
         });
         Button btnWithdraw50 = new Button("$50");
+        btnWithdraw50.setStyle("-fx-background-color: #b083c7; ");
         btnWithdraw50.setPrefHeight(90);
         btnWithdraw50.setPrefWidth(400);
         btnWithdraw50.setFont(Font.font("Verdana", 30));
@@ -227,6 +242,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(withdrawScreen()));
         });
         Button btnWithdraw100 = new Button("$100");
+        btnWithdraw100.setStyle("-fx-background-color: #b083c7; ");
         btnWithdraw100.setPrefHeight(90);
         btnWithdraw100.setPrefWidth(400);
         btnWithdraw100.setFont(Font.font("Verdana", 30));
@@ -236,6 +252,7 @@ public class CashMachineApp extends Application {
             stage.setScene(new Scene(withdrawScreen()));
         });
         Button btnWithdrawOtherAmount = new Button("Other amount");
+        btnWithdrawOtherAmount.setStyle("-fx-background-color: #b083c7; ");
         btnWithdrawOtherAmount.setPrefHeight(90);
         btnWithdrawOtherAmount.setPrefWidth(400);
         btnWithdrawOtherAmount.setFont(Font.font("Verdana", 30));
