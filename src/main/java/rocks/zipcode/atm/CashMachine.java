@@ -21,6 +21,7 @@ public class CashMachine {
     }
 
     private Consumer<AccountData> update = data -> {
+
         accountData = data;
     };
 
@@ -66,7 +67,7 @@ public class CashMachine {
 
     @Override
     public String toString() {
-        return accountData != null ? accountData.toString() : "Logout successful. Set ID to 1 for Basic or 2 for Premium to login.";
+        return accountData != null ? accountData.toString() : "Logout successful.";
     }
 
     private <T> void tryCall(Supplier<ActionResult<T> > action, Consumer<T> postAction) {

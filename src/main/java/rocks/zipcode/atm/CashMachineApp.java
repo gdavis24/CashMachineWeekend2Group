@@ -101,15 +101,15 @@ public class CashMachineApp extends Application {
             } else if (email.contains("@")) {
                 Alert.display("Alert Box", "Invalid input. Please enter a valid email address.");
             } else {
-                cashMachine.addAccount(Integer.parseInt(fieldEnterID.getText()), name, email, 0, accountType);
-                cashMachine.login(Integer.parseInt(fieldEnterID.getText()));
-                areaInfo.setText(cashMachine.toString());
-                stage.setScene(new Scene(loggedInHomeScreen()) );
+                cashMachine.addAccount(Integer.parseInt(fieldID.getText()), name, email, 0, accountType);
+
+
+                stage.setScene(new Scene(loginScreen()) );
             }
         });
         VBox layoutCreateAccount = new VBox(0);
         labelCreateAccount.setPrefSize(400, 400);
-        layoutCreateAccount.getChildren().addAll(labelCreateAccount,labelId, fieldID,labelName, fieldName,labelEmail, fieldEmail, btnSubmitInfo, combobox);
+        layoutCreateAccount.getChildren().addAll(labelCreateAccount,labelId, fieldID,labelName, fieldName,labelEmail, fieldEmail,combobox, btnSubmitInfo);
         //createAccountScreen = new Scene(layoutCreateAccount, 300, 300);
         return layoutCreateAccount;
     }

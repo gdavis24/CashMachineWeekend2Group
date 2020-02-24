@@ -15,11 +15,11 @@ public class Bank {
 
     public Bank() {
         accounts.put(1, new BasicAccount(new AccountData(
-                1, "Basic", "example1@gmail.com", 500
+                1, "James", "example1@gmail.com", 500
         )));
 
         accounts.put(2, new PremiumAccount(new AccountData(
-                2, "Premium", "example2@gmail.com", 200)));
+                2, "Bill", "example2@gmail.com", 200)));
 
     }
 
@@ -51,7 +51,7 @@ public class Bank {
         if (account != null) {
             return ActionResult.success(account.getAccountData());
         } else {
-            return ActionResult.fail("No account with id: " + id + "\nTry account Basic or Premium");
+            return ActionResult.fail("No account with id: " + id );
         }
     }
 
@@ -74,12 +74,14 @@ public class Bank {
     }
     //----------------
     public Boolean checkIds(Integer acctId) {
+        Boolean x = true;
         for(Integer i : accounts.keySet()){
             if(i.equals(acctId)) {
-                return false;
+                x=false;
             }
         }
-        return true;
+        System.out.println(x);
+        return x;
     }
 
 }
